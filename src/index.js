@@ -8,17 +8,20 @@ function showTemperature(response) {
     // console.log(response.data.location.name);
     let tempC = document.querySelector("#city-temp");
     tempC.innerHTML = Math.round(response.data.current.temp_c);
+    // console.log(icon);
+    let weatherIcon = document.querySelector("#icon");
+    weatherIcon.innerHTML = `<img src = "https://${response.data.current.condition.icon}"class="weather-app-data-icon" />`;
 
     let cityName = document.querySelector("#city");
     cityName.innerHTML = response.data.location.name;
 
     let description = document.querySelector("#desc");
-    description.innerHTML = `${response.data.current.condition.text}`;
+    description.innerHTML = `${response.data.current.condition.text} `;
 
     let humidity = document.querySelector("#weather-app-city-humidity");
-    humidity.innerHTML = `${response.data.current.humidity}%`;
+    humidity.innerHTML = `${response.data.current.humidity}% `;
     let windSpeed = document.querySelector("#weather-app-city-wind");
-    windSpeed.innerHTML = `${response.data.current.wind_kph}km/h`;
+    windSpeed.innerHTML = `${response.data.current.wind_kph} km / h`;
 
     let currentTime = document.querySelector("#time");
     let date = new Date(response.data.location.localtime_epoch * 1000);

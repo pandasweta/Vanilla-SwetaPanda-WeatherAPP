@@ -63,15 +63,19 @@ header {
   font-weight: 600px;
 }
 .weather-app-data-icon {
-  font-size: 25px;
-  margin-top: 10px;
+  width: 70px;
+  height: 70px;
+
+  /* margin-top: -5px; */
 }
 .weather-app-data-temp {
   font-size: 45px;
+  line-height: 72px;
 }
 .weaher-app-data-temp-unit {
   font-size: 20px;
   margin-top: 5px;
+  line-height: 40px;
 }
 footer {
   border-top: 1px solid rgba(39, 33, 66, 0.08);
