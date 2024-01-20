@@ -15,21 +15,34 @@
   <body>
     <div class="weather-app">
       <header>
-        <form>
-          <input type="search" placeholder="Enter the city name.." required />
-          <input type="submit" value="Search" />
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter the city name.."
+            required
+            class="search-input"
+          />
+          <input type="submit" value="Search" class="search-submit" />
         </form>
       </header>
       <main>
-        <div>
-          <h1>Amsterdam</h1>
-          <p>
-            Tuesday, 11:32 AM
-            <br />
-            Humidity:100%,Wind:15Km/h
-          </p>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city">Amsterdam</h1>
+            <p class="weather-app-date-time">
+              Tuesday, 11:32 AM, Cloudy
+              <br />
+              Humidity:<strong>100%</strong>,Wind:<strong>15Km/h</strong>
+            </p>
+          </div>
+          <!-- <div> -->
+          <div class="weather-app-temperature-details">
+            <div class="weather-app-data-icon">🌤️</div>
+            <div class="weather-app-data-temp">1</div>
+            <div class="weaher-app-data-temp-unit">℃</div>
+          </div>
+          <!-- </div> -->
         </div>
-        <div>🌤️1℃</div>
       </main>
       <footer>
         This project was coded by
