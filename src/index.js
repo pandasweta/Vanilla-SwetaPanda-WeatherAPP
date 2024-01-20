@@ -73,6 +73,6 @@ function showTimeDate(date) {
     // let today = document.querySelector("p");
     // today.innerHTML = `${today_time}`;
 }
-searchCity("Pune");
+searchCity("Amsterdam");
 
 
