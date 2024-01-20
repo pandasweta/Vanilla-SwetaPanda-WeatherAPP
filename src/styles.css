@@ -65,6 +65,7 @@ header {
 .weather-app-data-icon {
   width: 70px;
   height: 70px;
+  margin-top: 1px;
 
   /* margin-top: -5px; */
 }
