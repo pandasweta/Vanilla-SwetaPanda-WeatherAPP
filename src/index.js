@@ -75,4 +75,35 @@ function showTimeDate(date) {
 }
 searchCity("Amsterdam");
 
+function weatherForecast() {
+
+
+    let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
+    let forecastDays = ""
+
+    days.forEach(function (day) {
+        forecastDays += `<div class="weather-forecast-days">
+            <div class="weather-forecast-day">${day}</div>
+            <div class="weather-forecast-icon">
+              <img
+                src="https://cdn.weatherapi.com/weather/64x64/day/113.png"
+                width="80"
+              />
+            </div>
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temp-max"><strong>11°</strong></span
+              ><span class="weather-forecast-temp-min">9°</span>
+            </div>
+          </div>`;
+
+
+    })
+    let forecast = document.querySelector("#weather-app-forecast");
+    forecast.innerHTML = forecastDays;
+}
+weatherForecast();
+
+
+
+
 
