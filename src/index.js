@@ -5,27 +5,29 @@ function searchformCity(event) {
 }
 
 function showTemperature(response) {
-    // console.log(response.data.location.name);
+    console.log(response.data);
     let tempC = document.querySelector("#city-temp");
-    tempC.innerHTML = Math.round(response.data.current.temp_c);
-    // console.log(icon);
+    tempC.innerHTML = Math.round(response.data.temperature.current);
+    console.log(response.data.condition.icon_url);
     let weatherIcon = document.querySelector("#icon");
-    weatherIcon.innerHTML = `<img src = "https://${response.data.current.condition.icon}"class="weather-app-data-icon" />`;
+    weatherIcon.innerHTML = `<img src = "${response.data.condition.icon_url}"class="weather-app-data-icon" />`;
 
     let cityName = document.querySelector("#city");
-    cityName.innerHTML = response.data.location.name;
+    cityName.innerHTML = response.data.city;
 
     let description = document.querySelector("#desc");
-    description.innerHTML = `${response.data.current.condition.text} `;
+    description.innerHTML = `${response.data.condition.description} `;
 
     let humidity = document.querySelector("#weather-app-city-humidity");
-    humidity.innerHTML = `${response.data.current.humidity}% `;
+    humidity.innerHTML = `${response.data.temperature.humidity}% `;
     let windSpeed = document.querySelector("#weather-app-city-wind");
-    windSpeed.innerHTML = `${response.data.current.wind_kph} km / h`;
+    windSpeed.innerHTML = `${response.data.wind.speed} km / h`;
 
     let currentTime = document.querySelector("#time");
-    let date = new Date(response.data.location.localtime_epoch * 1000);
+    let date = new Date(response.data.time * 1000);
     currentTime.innerHTML = showTimeDate(date);
+
+    getForecasts(response.data.city);
 
 
 
@@ -38,9 +40,9 @@ searchformElement.addEventListener("submit", searchformCity)
 // to show the seacrch-city and temeperature in realtime through API call
 
 function searchCity(city) {
-    let apiKey = "147a5d4e22274503a0c71826230610";
-    let apiURL = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-    console.log(apiURL);
+    let apiKey = "at7ddf3o73b01eae74140de7cdd2c6b9";
+    let apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    // console.log(apiURL);
     axios.get(apiURL).then(showTemperature)
 }
 
@@ -73,9 +75,9 @@ function showTimeDate(date) {
     // let today = document.querySelector("p");
     // today.innerHTML = `${today_time}`;
 }
-searchCity("Amsterdam");
-
-function weatherForecast() {
+// to show the forecast temperatures for the upcoming days
+function weatherForecast(response) {
+    // console.log(response.data);
 
 
     let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
@@ -86,7 +88,7 @@ function weatherForecast() {
             <div class="weather-forecast-day">${day}</div>
             <div class="weather-forecast-icon">
               <img
-                src="https://cdn.weatherapi.com/weather/64x64/day/113.png"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
                 width="80"
               />
             </div>
@@ -101,7 +103,18 @@ function weatherForecast() {
     let forecast = document.querySelector("#weather-app-forecast");
     forecast.innerHTML = forecastDays;
 }
-weatherForecast();
+
+function getForecasts(city) {
+    let apiKey = "at7ddf3o73b01eae74140de7cdd2c6b9";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+    // console.log(apiUrl);
+    axios.get(apiUrl).then(weatherForecast);
+}
+
+// weatherForecast();
+searchCity("Hoofddorp");
+
+
 
 
 
