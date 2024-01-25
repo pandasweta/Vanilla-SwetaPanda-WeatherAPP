@@ -75,35 +75,44 @@ function showTimeDate(date) {
     // let today = document.querySelector("p");
     // today.innerHTML = `${today_time}`;
 }
+
+
+function getForecasts(city) {
+    let apiKey = "at7ddf3o73b01eae74140de7cdd2c6b9";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
+
+    console.log(apiUrl);
+
+
+    axios.get(apiUrl).then(weatherForecast);
+}
 // to show the forecast temperatures for the upcoming days
-function forecastDaysTemp(time) {
-    let date = new Date(time * 1000);
+function forecastDaysTemp(date) {
+    let now = new Date(date * 1000);
+    console.log(now);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
 
+    return days[now.getDay()];
 
-    let days = ["Sun", "Mon", "Tue", "Thurs", "Fri", "Sat"];
-
-    return days[date.getDay()];
 
 
 
 }
 // forecastDays();
 function weatherForecast(response) {
-    console.log(response.data.daily);
-    console.log(response.data.Datedaily.daily[3].time);
-
+    // console.log(response.data.daily);
+    // console.log((response.data.daily[3].time));
     // console.log((response.data.daily[0].time));
-
-
-
-
     // let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
+
+    let forecast_days = response.data.daily;
     let forecastDays = "";
 
     // let date = new Date(response.data. * 1000);
 
 
-    response.data.daily.forEach(function (day, index) {
+    forecast_days.forEach(function (day, index) {
         if (index < 5) {
 
 
@@ -126,16 +135,6 @@ function weatherForecast(response) {
     })
     let forecast = document.querySelector("#weather-app-forecast");
     forecast.innerHTML = forecastDays;
-}
-
-function getForecasts(city) {
-    let apiKey = "at7ddf3o73b01eae74140de7cdd2c6b9";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-
-    console.log(apiUrl);
-
-
-    axios.get(apiUrl).then(weatherForecast);
 }
 
 // weatherForecast();
