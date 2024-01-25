@@ -90,7 +90,7 @@ function getForecasts(city) {
 // to show the forecast temperatures for the upcoming days
 function forecastDaysTemp(date) {
     let now = new Date(date * 1000);
-    console.log(now);
+    // console.log(now);
     let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
 
     return days[now.getDay()];
@@ -102,14 +102,16 @@ function forecastDaysTemp(date) {
 // forecastDays();
 function weatherForecast(response) {
     // console.log(response.data.daily);
-    // console.log((response.data.daily[3].time));
+    // console.log((response.data.daily.time));
     // console.log((response.data.daily[0].time));
     // let days = ["Wed", "Thurs", "Fri", "Sat", "Sun"];
+    // let date =
 
     let forecast_days = response.data.daily;
     let forecastDays = "";
 
-    // let date = new Date(response.data. * 1000);
+
+
 
 
     forecast_days.forEach(function (day, index) {
@@ -129,6 +131,7 @@ function weatherForecast(response) {
               ><span class="weather-forecast-temp-min">${Math.round(day.temperature.minimum)}°</span>
             </div>
           </div>`;
+
         }
 
 
@@ -137,7 +140,6 @@ function weatherForecast(response) {
     forecast.innerHTML = forecastDays;
 }
 
-// weatherForecast();
 searchCity("Hoofddorp");
 
 
